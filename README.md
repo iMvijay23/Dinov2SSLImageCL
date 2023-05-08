@@ -1,0 +1,1 @@
+# Dinov2TinyImageNet
