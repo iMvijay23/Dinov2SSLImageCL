@@ -1,4 +1,4 @@
-# Dinov2TinyImageNet
+# Finetunig DINOv2 for Classification
 
 ## Self supervised image classification on tinyimagenet and imagenet dataset.
 
