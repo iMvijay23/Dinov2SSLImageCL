@@ -2,8 +2,7 @@
 
 ## Self supervised image classification on tinyimagenet and imagenet dataset.
 
-- I make use of the DINO(Distillation of knowledge using No labels) approach for finetuning custom
-student teacher network.
+- Repository contains the implementation of DINO(Distillation of knowledge using No labels) approach for finetuning custom student teacher training network.
 - The base model I used were DINOv2base and DINOv2small. Also VITtiny and small
 
 ## Running the experiment:
