@@ -14,6 +14,11 @@ def prepare_models(model_name, num_classes=200, pretrained=True):
         teacher_model = torch.hub.load('facebookresearch/dinov2', 'dinov2_vits14_lc', pretrained=pretrained)
         student_model.linear_head = nn.Linear(in_features=1920, out_features=num_classes, bias=True)
         teacher_model.linear_head = nn.Linear(in_features=1920, out_features=num_classes, bias=True)
+    elif model_name == "dinov2base":
+        student_model = torch.hub.load('facebookresearch/dinov2', 'dinov2_vitb14_lc', pretrained=pretrained)
+        teacher_model = torch.hub.load('facebookresearch/dinov2', 'dinov2_vitb14_lc', pretrained=pretrained)
+        student_model.linear_head = nn.Linear(in_features=3840, out_features=num_classes, bias=True)
+        teacher_model.linear_head = nn.Linear(in_features=3840, out_features=num_classes, bias=True)
     elif model_name == "vit":
         student_model = create_model("vit_base_patch32_224_in21k", pretrained=pretrained)
         teacher_model = create_model("vit_base_patch32_224_in21k", pretrained=pretrained)

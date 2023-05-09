@@ -4,6 +4,13 @@ import torch.optim as optim
 from torch.optim.lr_scheduler import _LRScheduler, CosineAnnealingLR
 import numpy as np
 
+"""
+DINOv2 hyperparameters
+optimizer = torch.optim.SGD(optim_param_groups, momentum=0.9, weight_decay=0)
+max_iter = epochs * epoch_length
+scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, max_iter, eta_min=0)
+"""
+
 def build_optimizer(optimizer_name, model, initial_lr=1e-4, weight_decay=0.04):
     """
     Build an optimizer for the model based on the user input.

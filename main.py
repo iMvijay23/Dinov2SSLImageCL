@@ -30,7 +30,7 @@ if __name__ == "__main__":
     parser.add_argument('--grad_accum_steps', type=int, default=4, help='Gradient accumulation steps')
     parser.add_argument('--transform_type', choices=['simple', 'hard'], default='simple', help='Choose simple or hard transformations')
     parser.add_argument('--test_split_percent', type=float, default=0.2, help='Percentage of training set to keep aside for the test set')
-    parser.add_argument('--model_name', choices=['dinov2', 'vit'], default='dinov2', help='Choose the model architecture: dinov2 or vit')
+    parser.add_argument('--model_name', choices=['dinov2', 'vit','dinov2base'], default='dinov2', help='Choose the model architecture: dinov2 or vit')
     parser.add_argument('--num_classes', type=int, default=200, help='Number of output classes')
     parser.add_argument('--optimizer', choices=['sgd', 'adam', 'adamw'], default='adamw', help='Choose the optimizer: sgd, adam, or adamw')
     parser.add_argument('--scheduler', choices=['cosineannealing', 'custom'], default='custom', help='Choose the scheduler: cosineannealing or custom')
@@ -61,10 +61,11 @@ if __name__ == "__main__":
     # Model preparation
     student_model, teacher_model = prepare_models(args.model_name, num_classes=args.num_classes)
     student_model = freeze_student_except_last_layer(student_model)
+    #teacher_model = freeze_student_except_last_layer(teacher_model)
 
     #Evaluate on saved model and break 
     if args.evaluate:
-        saved_model_path = "path/to/saved/model"
+        saved_model_path = "/content/DINOv2Vijay/dinocolabmodel/ViT_DINO_student_epoch_2_best_tinyimagenet.pt"
         student_model.load_state_dict(torch.load(saved_model_path))
         eval_accuracy, eval_loss, _ = evaluate(student_model, test_loader, device)
         print(f"Baseline validation accuracy: {eval_accuracy:.2f}%")
